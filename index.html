@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Michelle Sepulchro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Michelle Sepulchro - Agência Perfil MS Digital. Estratégia, comunicação e posicionamento para empresas que desejam fortalecer sua presença digital.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================================================
+       RESET
+       ===================================================== */
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #040404;
+      color: #eaeaea;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    /* =====================================================
+       SCROLL PROGRESS
+       ===================================================== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: #d1006c;
+      z-index: 10000;
+      transition: width 0.1s linear;
+    }
+
+    /* =====================================================
+       HEADER
+       ===================================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      padding: 16px 0;
+      background: transparent;
+      transition: background 0.35s ease, padding 0.35s ease, transform 0.35s ease;
+    }
+
+    .header.scrolled {
+      background: rgba(4, 4, 4, 0.94);
+      backdrop-filter: blur(10px);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(209, 0, 108, 0.2);
+    }
+
+    .header.hidden {
+      transform: translateY(-100%);
+    }
+
+    .header-inner {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-btn {
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .brand-btn:hover {
+      background: rgba(209, 0, 108, 0.18);
+      box-shadow: 0 0 14px rgba(209, 0, 108, 0.6);
+    }
+
+    .menu-link {
+      color: #d1006c;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .menu-link:hover {
+      color: #ffffff;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .header-nav a {
+      color: #eaeaea;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .header-nav a:hover {
+      color: #d1006c;
+    }
+
+    .header-cta {
+      display: inline-block;
+      background: #d1006c;
+      color: #fff;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 13px;
+      transition: all 0.3s ease;
+    }
+
+    .header-cta:hover {
+      box-shadow: 0 0 22px rgba(209, 0, 108, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .header-cta-mobile {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #d1006c;
+      transition: all 0.3s ease;
+      margin: 0 auto;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+    .hero-wrapper {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      padding: 180px 20px 100px;
+      overflow: hidden;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, rgba(209,0,108,0.15) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(50px);
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(209, 0, 108, 0.15);
+      border: 1px solid rgba(209, 0, 108, 0.4);
+      color: #d1006c;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 50px;
+      margin-bottom: 32px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-badge span {
+      color: #d1006c;
+    }
+
+    .hero-card h1 {
+      font-weight: 800;
+      line-height: 1.1;
+      margin: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-line {
+      display: block;
+      font-size: 32px;
+      letter-spacing: 12px;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    .hero-line.highlight {
+      color: #d1006c;
+      font-size: 80px;
+      font-weight: 900;
+      text-shadow: 0 0 30px rgba(209, 0, 108, 0.6), 0 0 60px rgba(209, 0, 108, 0.2);
+      letter-spacing: 4px;
+      margin: 16px 0;
+    }
+
+    .hero-description {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #d6d6d6;
+      margin: 32px auto 40px;
+      max-width: 600px;
+    }
+
+    .hero-description strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      background: #d1006c;
+      color: #fff;
+      padding: 16px 32px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      transition: all 0.3s ease;
+      border: 2px solid #d1006c;
+    }
+
+    .cta-btn:hover {
+      box-shadow: 0 0 28px rgba(209, 0, 108, 0.7);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: transparent;
+      border: 2px solid rgba(209, 0, 108, 0.6);
+      color: #ffffff;
+    }
+
+    .cta-btn.secondary:hover {
+      background: rgba(209, 0, 108, 0.15);
+      box-shadow: 0 0 20px rgba(209, 0, 108, 0.4);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(209, 0, 108, 0.2);
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item strong {
+      display: block;
+      font-size: 32px;
+      font-weight: 800;
+      color: #d1006c;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-item span {
+      font-size: 12px;
+      color: #9a9a9a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(209, 0, 108, 0.3);
+    }
+
+    /* =====================================================
+       APRESENTAÇÃO
+       ===================================================== */
+    .content-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 60px 20px 120px;
+    }
+
+    .content-card {
+      background: linear-gradient(160deg, rgba(30,5,20,.97), rgba(12,0,8,.97));
+      border-radius: 18px;
+      max-width: 1100px;
+      width: 100%;
+      display: flex;
+      gap: 60px;
+      padding: 60px;
+      border: 1px solid rgba(209, 0, 108, 0.3);
+    }
+
+    .content-image img {
+      max-width: 380px;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .content-text {
+      flex: 1;
+    }
+
+    .label {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #d1006c;
+    }
+
+    .line {
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(209,0,108,.65),
+        transparent
+      );
+      margin: 22px 0;
+    }
+
+    /* =====================================================
+       SERVIÇOS & CATÁLOGO
+       ===================================================== */
+    .services-wrapper,
+    .catalog-wrapper {
+      padding: 60px 20px 120px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .videos-wrapper {
+      padding: 60px 20px 120px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .services-grid {
+      max-width: 1100px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .service-card {
+      background: linear-gradient(160deg, rgba(30,5,20,.97), rgba(12,0,8,.97));
+      border-radius: 14px;
+      padding: 30px;
+      border: 1px solid rgba(209,0,108,.25);
+      transition: all .3s ease;
+    }
+
+    .service-card:hover {
+      border-color: rgba(209,0,108,.7);
+      box-shadow: 0 0 25px rgba(209,0,108,.5);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      color: #d1006c;
+      font-size: 18px;
+    }
+
+    .service-card h3 {
+      margin: 12px 0;
+      font-size: 18px;
+    }
+
+    .service-card p {
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #dddddd;
+    }
+
+    .catalog-inner {
+      max-width: 1100px;
+      width: 100%;
+    }
+
+    .catalog-image {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .catalog-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .catalog-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: #bdbdbd;
+      display: block;
+    }
+
+    .catalog-btn {
+      background: transparent;
+      border: 1px solid rgba(209,0,108,.6);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .3s ease;
+    }
+
+    .catalog-btn:hover {
+      background: rgba(209,0,108,.15);
+      box-shadow: 0 0 15px rgba(209,0,108,.6);
+      transform: translateY(-1px);
+    }
+
+    /* =====================================================
+       TRAJETÓRIA
+       ===================================================== */
+    .trajectory-wrapper {
+      display: flex;
+      justify-content: center;
+      padding: 80px 20px 140px;
+    }
+
+    .trajectory-card {
+      max-width: 1100px;
+      width: 100%;
+      background: linear-gradient(160deg, rgba(30,5,20,.97), rgba(12,0,8,.97));
+      border-radius: 18px;
+      padding: 60px;
+      border: 1px solid rgba(209,0,108,.35);
+    }
+
+    .trajectory-subcard {
+      margin-top: 30px;
+      padding: 26px;
+      border-radius: 16px;
+      background: linear-gradient(160deg, rgba(22,6,14,.96), rgba(10,0,6,.96));
+      border: 1px solid rgba(209,0,108,.25);
+      transition: all .3s ease;
+    }
+
+    .trajectory-subcard:hover {
+      border-color: rgba(209,0,108,.6);
+      box-shadow: 0 0 20px rgba(209,0,108,.4);
+      transform: translateY(-2px);
+    }
+
+    .trajectory-content {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .trajectory-content img {
+      width: 220px;
+      max-width: 100%;
+      border-radius: 12px;
+    }
+
+    .trajectory-number {
+      width: 32px;
+      height: 32px;
+      background: #d1006c;
+      color: #fff;
+      border-radius: 50%;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 13px;
+    }
+
+    .trajectory-text h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .trajectory-text p {
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: #dddddd;
+    }
+
+    /* =====================================================
+       PAINEL DE VÍDEOS
+       ===================================================== */
+    .videos-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: auto;
+    }
+
+    .videos-layout {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+      align-items: flex-start;
+    }
+
+    .video-player {
+      background: linear-gradient(160deg, rgba(30,5,20,.97), rgba(12,0,8,.97));
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid rgba(209,0,108,.35);
+    }
+
+    .video-player iframe {
+      width: 100%;
+      height: 380px;
+      border-radius: 12px;
+      border: 0;
+    }
+
+    .video-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .video-item {
+      padding: 16px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, rgba(22,6,14,.96), rgba(10,0,6,.96));
+      border: 1px solid rgba(209,0,108,.25);
+      cursor: pointer;
+      transition: all .3s ease;
+      font-size: 14px;
+      color: #eaeaea;
+    }
+
+    .video-item.active,
+    .video-item:hover {
+      border-color: rgba(209,0,108,.7);
+      box-shadow: 0 0 18px rgba(209,0,108,.4);
+    }
+
+    .video-item.active {
+      background: rgba(209,0,108,.12);
+    }
+
+    /* =====================================================
+       PAINEL DE COMENTÁRIOS
+       ===================================================== */
+    .testimonial-wrapper {
+      position: relative;
+      max-width: 760px;
+      margin: 48px auto 0;
+    }
+
+    .testimonial-card {
+      display: none;
+      background: linear-gradient(160deg, rgba(30,5,20,.97), rgba(12,0,8,.97));
+      border-radius: 18px;
+      padding: 48px 40px;
+      border: 1px solid rgba(209,0,108,.35);
+      box-shadow: 0 0 35px rgba(209,0,108,.15);
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .testimonial-card.active {
+      display: block;
+    }
+
+    .testimonial-quote {
+      font-size: 48px;
+      color: #d1006c;
+      margin-bottom: 16px;
+      line-height: 1;
+    }
+
+    .testimonial-text {
+      font-size: 15px;
+      line-height: 1.75;
+      color: #eaeaea;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .testimonial-author {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .testimonial-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .testimonial-info span {
+      font-size: 12px;
+      color: #bdbdbd;
+    }
+
+    .testimonial-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 1px solid rgba(209,0,108,.6);
+      background: transparent;
+      color: #fff;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all .3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .testimonial-arrow:hover {
+      background: rgba(209,0,108,.15);
+      box-shadow: 0 0 15px rgba(209,0,108,.5);
+    }
+
+    .testimonial-arrow.prev { left: -60px; }
+    .testimonial-arrow.next { right: -60px; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* =====================================================
+       SCROLL REVEAL
+       ===================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =====================================================
+       FLOATING CTA (WHATSAPP)
+       ===================================================== */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9998;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: #d1006c;
+      color: #fff;
+      padding: 14px 20px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 20px rgba(209, 0, 108, 0.45);
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .floating-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(209, 0, 108, 0.6);
+    }
+
+    .floating-cta svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+    .site-footer {
+      background: #040404;
+      border-top: 1px solid rgba(209,0,108,.25);
+      padding: 80px 20px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 120px;
+    }
+
+    .footer-brand {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .footer-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #bdbdbd;
+      margin-top: 12px;
+    }
+
+    .footer-col h4 {
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+
+    .footer-link,
+    .footer-contact {
+      display: block;
+      font-size: 14px;
+      color: #eaeaea;
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: color .3s ease;
+    }
+
+    .footer-link:hover,
+    .footer-contact:hover {
+      color: #d1006c;
+    }
+
+    .footer-contact {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-icon {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      color: #d1006c;
+    }
+
+    .footer-icon svg {
+      width: 100%;
+      height: 100%;
+      fill: #d1006c;
+    }
+
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(209,0,108,.2);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: #9a9a9a;
+    }
+
+    .footer-dev {
+      color: #ffffff;
+      font-weight: 500;
+    }
+
+    /* =====================================================
+       RESPONSIVO
+       ===================================================== */
+    @media (max-width: 1199px) {
+      .videos-layout {
+        grid-template-columns: 1.6fr 1fr;
+        gap: 32px;
+      }
+
+      .video-player iframe {
+        height: 340px;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .header-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        max-width: 300px;
+        height: 100vh;
+        background: rgba(8, 8, 8, 0.98);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 80px 32px;
+        gap: 24px;
+        border-left: 1px solid rgba(209,0,108,.25);
+        transition: right 0.35s ease;
+      }
+
+      .header-nav.active {
+        right: 0;
+      }
+
+      .menu-toggle {
+        display: flex;
+        z-index: 10001;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .header-nav .header-cta-mobile {
+        display: inline-block;
+        margin-top: 12px;
+      }
+
+      .videos-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .video-player iframe {
+        height: 300px;
+      }
+
+      .testimonial-wrapper {
+        max-width: 100%;
+        padding: 0 24px;
+      }
+
+      .footer-inner {
+        gap: 48px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .content-card {
+        flex-direction: column;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .trajectory-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .trajectory-content img {
+        width: 100%;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero-card {
+        padding: 48px 24px;
+      }
+
+      .hero-line {
+        font-size: 20px;
+        letter-spacing: 8px;
+      }
+
+      .hero-line.highlight {
+        font-size: 48px;
+        margin: 12px 0;
+      }
+
+      .hero-badge {
+        font-size: 12px;
+        padding: 6px 14px;
+        margin-bottom: 24px;
+      }
+
+      .hero-description {
+        font-size: 15px;
+        margin: 24px auto 32px;
+      }
+
+      .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .cta-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 14px 24px;
+      }
+
+      .hero-stats {
+        gap: 20px;
+        padding-top: 32px;
+      }
+
+      .stat-item strong {
+        font-size: 24px;
+      }
+
+      .stat-divider {
+        height: 30px;
+      }
+
+      .video-player iframe {
+        height: 240px;
+      }
+
+      .testimonial-card {
+        padding: 36px 28px 40px;
+      }
+
+      .testimonial-arrow {
+        top: auto;
+        bottom: -56px;
+        transform: none;
+      }
+
+      .testimonial-arrow.prev {
+        left: 50%;
+        transform: translateX(-120%);
+      }
+
+      .testimonial-arrow.next {
+        right: 50%;
+        transform: translateX(120%);
+      }
+
+      .floating-cta {
+        display: flex;
+      }
+    }
+
+    @media (max-width: 575px) {
+      body {
+        overflow-x: hidden;
+      }
+
+      .hero-wrapper {
+        padding-top: 120px;
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      .hero-card {
+        padding: 24px 16px;
+      }
+
+      .hero-line {
+        font-size: 16px;
+        letter-spacing: 6px;
+      }
+
+      .hero-line.highlight {
+        font-size: 40px;
+        margin: 8px 0;
+        letter-spacing: 2px;
+      }
+
+      .content-card {
+        padding: 32px 20px;
+        gap: 24px;
+      }
+
+      .service-card {
+        padding: 24px;
+      }
+
+      .trajectory-card {
+        padding: 32px 20px;
+      }
+
+      .trajectory-subcard {
+        padding: 20px;
+      }
+
+      .videos-wrapper {
+        padding: 60px 16px 100px;
+      }
+
+      .video-player {
+        padding: 16px;
+      }
+
+      .video-player iframe {
+        height: 200px;
+      }
+
+      .video-item {
+        padding: 16px;
+      }
+
+      .testimonial-card {
+        padding: 32px 20px 36px;
+      }
+
+      .floating-cta {
+        bottom: 16px;
+        right: 16px;
+        padding: 12px 16px;
+        font-size: 13px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-line {
+        font-size: 14px;
+        letter-spacing: 4px;
+      }
+
+      .hero-line.highlight {
+        font-size: 34px;
+      }
+
+      .hero-stats {
+        gap: 16px;
+      }
+
+      .stat-divider {
+        display: none;
+      }
+
+      .stat-item span {
+        font-size: 11px;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1199px) {
+      .videos-wrapper {
+        padding-top: 48px;
+        padding-bottom: 64px;
+      }
+
+      .videos-wrapper .videos-layout {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+      }
+
+      .videos-wrapper .video-player {
+        padding: 16px;
+      }
+
+      .videos-wrapper .video-player iframe {
+        height: 260px !important;
+      }
+
+      .videos-wrapper .video-list {
+        gap: 10px;
+      }
+
+      .videos-wrapper .video-item {
+        padding: 14px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Scroll Progress -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="#inicio" class="brand-btn">Michelle Sepulchro</a>
+
+      <nav class="header-nav" id="headerNav">
+        <a href="#inicio">Início</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#catalogo">Catálogo</a>
+        <a href="#videos">Vídeos</a>
+        <a href="#comentarios">Time</a>
+        <a href="#inicio" class="header-cta header-cta-mobile">Faça sua Análise</a>
+      </nav>
+
+      <a href="https://api.whatsapp.com/send/?phone=5527999371327" class="header-cta" target="_blank" rel="noopener noreferrer">Faça sua Análise</a>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-wrapper" id="inicio">
+    <div class="hero-glow"></div>
+    <div class="hero-card reveal">
+      <div class="hero-badge">
+        <span>✦</span> 6+ Anos Transformando Negócios
+      </div>
+      
+      <h1>
+        <span class="hero-line">AGÊNCIA</span>
+        <span class="hero-line highlight">PERFIL MS</span>
+        <span class="hero-line">DIGITAL</span>
+      </h1>
+
+      <p class="hero-description">
+        Estratégia, comunicação e posicionamento para empresas que desejam
+        fortalecer sua presença, gerar autoridade e <strong>conquistar resultados reais</strong>.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="https://api.whatsapp.com/send/?phone=5527999371327" class="cta-btn" target="_blank" rel="noopener noreferrer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+            <path d="M20.52 3.48A11.82 11.82 0 0012.06 0C5.43 0 .06 5.37.06 12a11.9 11.9 0 001.6 5.94L0 24l6.26-1.64A11.9 11.9 0 0012.06 24C18.7 24 24.06 18.63 24.06 12a11.82 11.82 0 00-3.54-8.52zM12.06 21.82a9.76 9.76 0 01-4.98-1.37l-.36-.22-3.72.98.99-3.63-.23-.37a9.76 9.76 0 0114.98-12.16 9.7 9.7 0 01-6.68 16.77z"/>
+          </svg>
+          Faça sua Análise Grátis
+        </a>
+        <a href="#catalogo" class="cta-btn secondary">
+          Ver Serviços
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>500+</strong>
+          <span>Projetos Entregues</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong>4</strong>
+          <span>Países Atendidos</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <strong>98%</strong>
+          <span>Clientes Satisfeitos</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APRESENTAÇÃO -->
+  <section class="content-wrapper">
+    <div class="content-card reveal">
+      <div class="content-image">
+        <img src="https://i.imgur.com/R5euD9S.jpeg" alt="Michelle Sepulchro - CEO da Perfil MS Digital" loading="lazy">
+      </div>
+
+      <div class="content-text">
+        <span class="label">APRESENTAÇÃO</span>
+        <h2>Michelle Sepulchro</h2>
+
+        <div class="line"></div>
+        <p>
+          Sou Michelle Sepulchro, especialista em comunicação, marketing e mídias digitais.
+          Aos 33 anos, casada e natural de Vitória, Espírito Santo, construí uma trajetória
+          marcada pela criatividade, estratégia e paixão por transformar marcas em referências no digital.
+        </p>
+
+        <div class="line"></div>
+        <p>
+          Sou fundadora da Perfil MS Digital, agência de marketing que atua há mais de 6 anos no mercado,
+          desenvolvendo posicionamentos fortes e resultados reais para empresas de diferentes segmentos.
+          Hoje, atendemos clientes em diversos estados do Brasil e também no exterior,
+          com projetos na Bélgica, Portugal e Dubai.
+        </p>
+
+        <div class="line"></div>
+        <p>
+          Na Perfil MS Digital, ajudamos empresas e profissionais a crescerem no digital por meio do gerenciamento de mídias sociais, 
+          repaginação estratégica de perfis, design gráfico, produção de vídeos, comunicação visual, criação de sites, tráfego pago e mentorias. 
+          Tudo com foco em fortalecer sua marca, aumentar sua visibilidade e gerar resultados reais.
+        </p>
+
+        <div class="line"></div>
+        <p>
+          Acreditamos que comunicação vai além de postar nas redes sociais. Comunicação é conexão, 
+          posicionamento e impacto. E é exatamente isso que entregamos todos os dias para nossos clientes.
+        </p>
+
+        <div class="line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="services-wrapper" id="servicos">
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <span class="service-icon">✦</span>
+        <h3>6+ Anos de Experiência</h3>
+        <p>Uma trajetória sólida ajudando empresas e pessoas a atingirem seus objetivos.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">✦</span>
+        <h3>Foco em Inovação</h3>
+        <p>Soluções modernas, personalizadas e alinhadas às tendências do mercado.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">✦</span>
+        <h3>Atendimento Personalizado</h3>
+        <p>Estratégias adaptadas à realidade de cada cliente.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <span class="service-icon">✦</span>
+        <h3>Resultados Comprovados</h3>
+        <p>Projetos de sucesso com alto nível de satisfação.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRAJETÓRIA -->
+  <section class="trajectory-wrapper">
+    <div class="trajectory-card">
+
+      <span class="label reveal">TRAJETÓRIA PROFISSIONAL</span>
+      <h2 class="reveal">Transformando Marcas e Criando Histórias</h2>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">01</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/oPSlFE3.jpeg" alt="Diploma de pós-graduação" loading="lazy">
+          <div class="trajectory-text">
+            <h3>ENTREGA DO DIPLOMA DE PÓS-GRADUAÇÃO EM COMUNICAÇÃO E MARKETING EM MÍDIAS DIGITAIS</h3>
+            <p>Na Perfil MS Digital, acreditamos que a excelência nasce da busca contínua por conhecimento. 
+Com especialização em Pós Graduação em Comunicação e Marketing em Mídias Digitais e formação em Gestão de Recursos Humanos, 
+unimos estratégia, comunicação e gestão de pessoas para desenvolver soluções que fortalecem marcas, conectam negócios e impulsionam resultados.
+Mais do que marketing, entregamos visão estratégica para o crescimento do seu negócio.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">02</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/RjBeuqX.jpeg" alt="Cliente da Bélgica" loading="lazy">
+          <div class="trajectory-text">
+            <h3>CLIENTE DA BÉLGICA - AUTOR UEDISON PEREIRA</h3>
+            <p>A Perfil MS Digital tem expandido sua atuação e levado estratégias de marketing para diferentes partes do mundo. Hoje, 
+temos a honra de atender clientes no Brasil, Bélgica, Portugal e Dubai, fortalecendo negócios, construindo autoridade e gerando resultados 
+através da comunicação digital.
+Nossa missão é transformar marcas locais em referências globais.
+Na Foto o Autor Uedison Pereira da Bélgica.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">03</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/Kf8JVFV.jpeg" alt="Programa Na Real com a Dai" loading="lazy">
+          <div class="trajectory-text">
+            <h3>PARTICIPAÇÃO NO PROGRAMA NA REAL COM A DAI REDETVES</h3>
+            <p>O crescimento da Perfil MS Digital é resultado de dedicação, estratégia e credibilidade. Um marco dessa trajetória foi o convite
+ para que nossa CEO, Michelle Sepulchro, participasse do programa "Na Real com a Dai", na RedeTV, atuando como apresentadora por um dia. Um 
+reconhecimento que reforça a força da nossa marca e o impacto do nosso trabalho no mercado da comunicação e do marketing digital.Transformando oportunidades em conquistas 
+e fortalecendo marcas todos os dias.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">04</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/eihdTqU.jpeg" alt="Torneio de Futevôlei" loading="lazy">
+          <div class="trajectory-text">
+            <h3>MARKETING PARA MAIOR TORNEIO DE FUTEVÔLEI ES</h3>
+            <p>A Perfil MS Digital teve a honra de realizar a cobertura do maior torneio de futevôlei do Espírito Santo, registrando cada momento, emoção e conquista dentro da arena 
+.Mais do que captar imagens, levamos visibilidade, profissionalismo e comunicação estratégica para um dos maiores eventos esportivos do estado.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">05</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/oWnpKpu.jpeg" alt="Evento Jesus Te Chama" loading="lazy">
+          <div class="trajectory-text">
+            <h3>EVENTO EVANGÉLICO NA ORLA DA ILHA DAS CAIEIRAS - JESUS TE CHAMA</h3>
+            <p>A Perfil MS Digital marcou presença no evento Jesus Te Chama, contribuindo para ampliar o alcance e a visibilidade de uma das grandes celebrações da região. 
+Mais do que divulgar eventos, conectamos histórias, pessoas e marcas através de estratégias que geram resultados reais.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">06</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/FWsv4gL.jpeg" alt="Hortifruti Colatina" loading="lazy">
+          <div class="trajectory-text">
+            <h3>HONRA PELA REDE GAZETA À EMPRESA HORTIFRUTI COLATINA</h3>
+            <p>A Perfil MS Digital tem orgulho de contribuir para o fortalecimento da marca Hortifruti Colatina, 
+         desenvolvendo estratégias que ampliam a visibilidade, 
+        fortalecem a conexão com os clientes e impulsionam resultados.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">07</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/5NqqodL.jpeg" alt="Homenagem Câmara Municipal" loading="lazy">
+          <div class="trajectory-text">
+            <h3>HOMENAGEM NA CÂMARA MUNICIPAL DE VITÓRIA</h3>
+            <p>A Perfil MS Digital foi reconhecida na Câmara Municipal de Vitória, por iniciativa do vereador Dalton Neves, em reconhecimento ao trabalho, 
+dedicação e impacto gerado através da comunicação e do marketing digital. Uma conquista que fortalece nossa missão de transformar marcas em referências e gerar resultados para nossos clientes.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">08</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/E3f1waH.jpeg" alt="Reunião de negócios" loading="lazy">
+          <div class="trajectory-text">
+            <h3>DE HELICÓPTERO PARA GRANDES NEGÓCIOS</h3>
+            <p>Cada reunião de negócios é uma oportunidade de expandir horizontes, criar conexões e construir resultados. Na Perfil MS Digital, pensamos grande, 
+agimos com estratégia e levamos marcas cada vez mais longe.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">09</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/37w6lvu.jpeg" alt="Evento Empresa Delas" loading="lazy">
+          <div class="trajectory-text">
+            <h3>EVENTO EMPRESA DELAS</h3>
+            <p>Excelência, estratégia e resultado. A Perfil MS Digital teve a honra de participar da produção de vídeos para o evento da Empresa Delas. 
+Contribuindo para uma comunicação forte, profissional e de grande impacto.</p>
+          </div>
+        </div>
+      </div>
+       
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">10</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/kuLdA6r.jpeg" alt="Segunda participação Na Real com a Dai" loading="lazy">
+          <div class="trajectory-text">
+            <h3>PROGRAMA NA REAL COM A DAI REDETVES</h3>
+            <p>Mais uma conquista para Agência Perfil MS Digital! Pela segunda vez, recebeu o convite para participar do programa Na Real com a Dai,
+ na RedeTVES, assumindo o papel de apresentadora por um dia. Um reconhecimento que reforça sua credibilidade, talento e dedicação profissional.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">11</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/GSjjBRK.jpeg" alt="Campeonato de Karatê" loading="lazy">
+          <div class="trajectory-text">
+            <h3>CAMPEONATO DE KARATÊ EM SÃO PAULO</h3>
+            <p>A Agência Perfil MS Digital teve a honra de conduzir o marketing da Feki Karatê Intestino, fortalecendo a comunicação e ampliando o alcance.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">12</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/RJ7aun8.jpeg" alt="Campanha política" loading="lazy">
+          <div class="trajectory-text">
+            <h3>CAMPANHA POLÍTICA - MARQUINHOS SANTOS E EX-PREFEITO LUIZ PAULO</h3>
+            <p>A Agência Perfil MS Digital foi responsável pelo desenvolvimento de toda a comunicação visual da campanha política de Marquinhos Santos, 
+criando uma identidade estratégica, profissional e alinhada aos objetivos da campanha.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">13</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/1xVLzQx.jpeg" alt="Evento Seja Influencer" loading="lazy">
+          <div class="trajectory-text">
+            <h3>EVENTO SEJA INFLUENCER DO SEU PRÓPRIO NEGÓCIO</h3>
+            <p>Tive a honra de compartilhar um pouco da minha trajetória no evento Seja Influência do Seu Próprio Negócio, 
+inspirando empreendedores através da minha história. Ao meu lado, a miss e apresentadora Nádia Viana, tornando esse momento ainda mais especial.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">14</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/oC5nFps.jpeg" alt="Patrocinadora torneio de futevôlei" loading="lazy">
+          <div class="trajectory-text">
+            <h3>AGÊNCIA PERFIL MS DIGITAL MARCANDO PRESENÇA</h3>
+            <p>A Agência Perfil MS Digital teve a honra de ser patrocinadora de um dos maiores torneios de futevôlei do Espírito Santo, um evento que reuniu grandes empresas, 
+Marcas de destaque e atletas de alto nível. Mais do que marcar presença, contribuímos para fortalecer o esporte, gerar conexões e impulsionar oportunidades de negócios.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="trajectory-subcard reveal">
+        <span class="trajectory-number">15</span>
+        <div class="trajectory-content">
+          <img src="https://i.imgur.com/HH0qj2w.jpeg" alt="Programa Portal do Empoderamento" loading="lazy">
+          <div class="trajectory-text">
+            <h3>GRAVAÇÃO PARA O PROGRAMA DA EVA NA REDETV ES</h3>
+            <p>Tive a honra de ser convidada para participar do programa Portal do Empoderamento, na RedeTV ES, apresentado por Eva. Um momento especial de troca de experiências, 
+empreendedorismo e inspiração. Na foto, ao lado da apresentadora Eva e de Conceição Nunes, reflexoterapeuta, compartilhando conhecimento e fortalecendo conexões que transformam vidas e negócios.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section class="catalog-wrapper" id="catalogo">
+    <div class="catalog-inner">
+
+      <span class="label reveal">ESTRATÉGIAS DE ACELERAÇÃO</span>
+      <h2 class="reveal">Catálogo de Serviços</h2>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/RTQzVuT.png" alt="Planner Lucrativo" loading="lazy">
+          <h3>Planner Lucrativo</h3>
+          <p>Planner Lucrativo, um recurso indispensável para maximizar o sucesso no seu negócio aumentando o Faturamento,  impulsionando o seu resultado.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 189,90</strong>
+            </div>
+            <a class="catalog-btn" href="https://pay.kiwify.com.br/AyjqQjm" target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/B4loNC2.jpeg" alt="Análise de Perfil" loading="lazy">
+          <h3>Análise de Perfil</h3>
+          <p>Análise Estratégica de Perfil. Seu Instagram pode estar perdendo clientes sem que você perceba. Com a minha análise estratégica, identifico os erros que estão impedindo seu crescimento, engajamento e vendas, mostrando exatamente o que precisa ser ajustado para alcançar melhores resultados.<br>
+<br>
+✅ Descubra seus pontos fracos<br>
+✅ Receba orientações práticas e personalizadas<br>
+✅ Aumente sua autoridade, alcance e oportunidades de venda<br>
+<br>
+Transforme seu perfil em uma ferramenta que realmente gera resultados para o seu negócio.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 319,90</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20An%C3%A1lise%20de%20perfil." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/nwxhiKQ.jpeg" alt="Gerenciamento de Mídias Sociais" loading="lazy">
+          <h3>Gerenciamento de Mídias Sociais</h3>
+          <p>A gestão de mídias sociais é o processo de criar, planejar, publicar e monitorar conteúdo em plataformas de redes sociais com o objetivo de construir e fortalecer a presença online de uma marca ou empresa.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>Sob consulta</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20no%20Gerenciamento%20de%20m%C3%ADdias%20sociais." target="_blank" rel="noopener noreferrer">
+              Consultar Agora
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/VAHmLSX.jpeg" alt="Repaginada Plano Básico" loading="lazy">
+          <h3>Repaginada (Plano Básico)</h3>
+          <p>Criação do Instagram<br>
++ Link Bio Profissional<br>
++ Capa Padronizada<br>
++ Bio Estratégica<br>
++ Paleta de Cores</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 200,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20repaginada%20b%C3%A1sica." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/VAHmLSX.jpeg" alt="Repaginada Plano Top" loading="lazy">
+          <h3>Repaginada (Plano Top)</h3>
+          <p>Logotipo + Logomarca<br> + 
+Marca d'água 
+Entregue em PDF , PNG<br> 
+
++ Criação do Instagram<br> 
++ Link Bio Profissional<br> 
++ Capa Padronizada<br> 
++ Bio Estratégica<br>
++ Paleta de Cores</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 300,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20repaginada%20top." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/VAHmLSX.jpeg" alt="Repaginada Plano Premium" loading="lazy">
+          <h3>Repaginada (Plano Premium)</h3>
+          <p>Logotipo + Logomarca<br> + 
+Marca d'água<br> 
+Entregue em PDF , PNG<br> 
+
++ Criação do Instagram<br>  
++ Facebook Profissional<br> 
++ Email Profissional<br>
+
++ Link Bio Profissional<br> 
++ Capa Padronizada Instagram<br>
++ Capa Padronizada Facebook<br> 
++ Capa Padronizada Whatsapp<br> 
++ Capa Padronizada Email<br> 
++ Bio Estratégica<br>
++ Paleta de Cores<br> 
++ Contas Vinculadas </p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 350,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20repaginada%20premium." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/r03Kl98.jpeg" alt="Criando Instagram que Vende" loading="lazy">
+          <h3>Criando Instagram que Vende</h3>
+          <p>Imagine seu perfil no Instagram como uma vitrine que nunca fecha. Quando você transforma seu perfil pessoal em um perfil Profissional e Atraente,  as possibilidades se expandem conquistando uma audiência mais ampla e engajada.
+Se você deseja elevar sua marca no Instagram a um novo patamar vem comigo.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 89,90</strong>
+            </div>
+            <a class="catalog-btn" href="https://pay.kiwify.com.br/rmV1kRH" target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/sAYocwf.jpeg" alt="O Segredo dos Fechamentos Fáceis" loading="lazy">
+          <h3>O Segredo dos Fechamentos Fáceis</h3>
+          <p>Descubra as estratégias que transformam conversas em vendas e aprenda a fechar negócios com mais confiança e resultados. Neste e-book, você terá acesso a técnicas práticas para atrair clientes, quebrar objeções e aumentar suas vendas de forma simples e eficiente.
+
+Venda mais, conquiste mais clientes e acelere seus resultados com um método que funciona.
+
+Adquira agora e comece a fechar mais negócios todos os dias!</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 249,90</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20no%20e-book%20%22%20O%20segredo%20dos%20fechamentos%20f%C3%A1ceis%22." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/KlQwXTs.jpeg" alt="Gerando Desejo" loading="lazy">
+          <h3>Gerando Desejo</h3>
+          <p>Gatilhos Mentais para despertar o desejo de compra. 
+Até quem não quer comprar vai desejar o seu produto.
+Se prepare para vender muito.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 129,90</strong>
+            </div>
+            <a class="catalog-btn" href="https://pay.kiwify.com.br/uVX5GDT" target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/JjTr5a0.jpeg" alt="Esteira de Design Plano Básico" loading="lazy">
+          <h3>Esteira de Design (Plano Básico)</h3>
+          <p> 8 Post<br> 
++ Legenda Estratégica Sendo elas 3 Stories , 5 Feeds<br> 
++ Divulgação em + de 500 grupo de vendas.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 250,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20Esteira%20de%20design%20b%C3%A1sico." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/JjTr5a0.jpeg" alt="Esteira de Design Plano TOP" loading="lazy">
+          <h3>Esteira de Design (Plano TOP)</h3>
+          <p>15 Post<br> 
++ Legenda Estratégica Sendo elas 5 Stories , 10 Feeds<br> 
++ Divulgação em + de 500 grupo de vendas.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 350,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20Esteira%20de%20design%20top." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/JjTr5a0.jpeg" alt="Esteira de Design Plano Premium" loading="lazy">
+          <h3>Esteira de Design (Plano Premium)</h3>
+          <p>20 Post<br> 
++ Legenda Estratégica Sendo elas 10 Stories , 10 Feeds<br> 
++ Divulgação em + de 500 grupo de vendas.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 400,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20Esteira%20de%20design%20premium." target="_blank" rel="noopener noreferrer">
+              Adquirir Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/iHgSa8j.jpeg" alt="Mentoria GOD" loading="lazy">
+          <h3>Mentoria GOD</h3>
+          <p>Mentoria God – 30 Dias de Direcionamento Estratégico
+
+Pare de postar sem resultados. Com a Mentoria Gold, você terá 30 dias de acompanhamento estratégico para posicionar sua marca, fortalecer sua presença digital e transformar suas redes sociais em uma ferramenta de crescimento e vendas.<br>
+
+Benefícios da Mentoria:<br>
+✅ Posicionamento estratégico nas redes sociais<br>
+✅ Plano de ação personalizado para o seu negócio<br>
+✅ Direcionamento de conteúdo que gera engajamento<br>
+✅ Aumento da autoridade e visibilidade da sua marca<br>
+✅ Estratégias para atrair mais clientes e oportunidades<br>
+
+Receba orientação prática e descubra o caminho certo para alcançar resultados reais nas mídias sociais.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>R$ 700,00</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%20Michelle%2C%20tenho%20interesse%20na%20Mentoria%20GOD." target="_blank" rel="noopener noreferrer">
+              Consultar Agora
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/P0H2Rtj.jpeg" alt="Comunicação Visual" loading="lazy">
+          <h3>Comunicação Visual</h3>
+          <p>Produção de placas. OUTDOOR | FACHADAS</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>Sob consulta</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20%22Comunica%C3%A7%C3%A3o%20visual%22." target="_blank" rel="noopener noreferrer">
+              Consulte Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/y7peaTo.jpeg" alt="Tráfego Pago" loading="lazy">
+          <h3>Tráfego Pago</h3>
+          <p>Mais visibilidade, mais autoridade, mais vendas para o seu negócio.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>Sob Consulta</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20%22Tr%C3%A1fego%20pago%22." target="_blank" rel="noopener noreferrer">
+              Consulte Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/ZmAqnEB.jpeg" alt="Vídeo Maker Profissional" loading="lazy">
+          <h3>Vídeo Maker Profissional</h3>
+          <p>Vídeos profissionais ajudam sua empresa a conquistar mais visibilidade, fortalecer sua marca e gerar mais vendas. Transforme sua mensagem em conteúdo que conecta, engaja e gera resultados.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>Sob Consulta</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20%22V%C3%ADdeo%20Maker%20Profissional%22." target="_blank" rel="noopener noreferrer">
+              Consulte Já
+            </a>
+          </div>
+        </div>
+
+        <div class="service-card reveal">
+          <img class="catalog-image" src="https://i.imgur.com/1XRATev.jpeg" alt="Desenvolvedor de Web" loading="lazy">
+          <h3>Desenvolvedor de Web</h3>
+          <p>Desenvolvo sites e landing pages que transformam visitantes em clientes e fortalecem a presença digital de marcas.</p>
+          <div class="catalog-footer">
+            <div>
+              <span class="catalog-label">INVESTIMENTO ESTIMADO</span>
+              <strong>Sob Consulta</strong>
+            </div>
+            <a class="catalog-btn" href="https://api.whatsapp.com/send?phone=5527999371327&text=Ol%C3%A1%2C%20tenho%20interesse%20no%20servi%C3%A7o%20%22Desenvolvimento%20de%20websites%2Flanding%20pages%22." target="_blank" rel="noopener noreferrer">
+              Consulte Já
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PAINEL DE VÍDEO -->
+  <section class="videos-wrapper" id="videos">
+    <div class="videos-inner">
+
+      <span class="label reveal">CONHECIMENTO DIRETO</span>
+      <h2 class="reveal">Sessões Estratégicas</h2>
+
+      <div class="videos-layout reveal">
+
+        <div class="video-player">
+          <iframe
+            id="mainVideo"
+            src="https://www.youtube.com/embed/wUzBVSX9flI?si=33UeX-0Xtf7eQ9eJ"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <div class="video-list">
+          <div class="video-item active" data-video="https://www.youtube.com/embed/wUzBVSX9flI?si=33UeX-0Xtf7eQ9eJ">
+            <span>Participação no Programa na Real com a Dai</span>
+          </div>
+          <div class="video-item" data-video="https://youtube.com/embed/jSqS29ooNRM?si=wUVDfGy88rZcMD4S">
+            <span>Participação no Programa O Poder do Despertar da Eva de Jesus</span>
+          </div>
+          <div class="video-item" data-video="https://youtube.com/embed/PeaXlWxOZKY?si=T3YAPqfx5U4TaYNT">
+            <span>Entrevista para a REDETVES</span>
+          </div>
+          <div class="video-item" data-video="https://youtube.com/embed/WvwwKI74SHs?si=fGXEB457Y3eAzQzU">
+            <span>Reunião com a Equipe da Perfil MS Digital</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PAINEL DE COMENTÁRIOS -->
+  <section class="catalog-wrapper" id="comentarios">
+    <div class="catalog-inner">
+
+      <span class="label reveal">NOSSO TIME</span>
+      <h2 class="reveal">Por dentro da Perfil MS Digital</h2>
+
+      <div class="testimonial-wrapper reveal">
+
+        <button class="testimonial-arrow prev" id="prevTestimonial" aria-label="Depoimento anterior">‹</button>
+
+        <div class="testimonial-card active">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "A Perfil MS Digital nasceu com o propósito de impulsionar negócios e transformar sonhos em resultados. 
+Liderar esta equipe é uma grande satisfação, pois juntos construímos estratégias que geram crescimento e impacto real para nossos clientes."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/Zpb0slT.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Michelle Sepulchro</strong>
+              <span>– CEO e Gestora de Marketing</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "Fazer parte da Perfil MS Digital é ter a oportunidade de conectar empresas a soluções que realmente geram resultados. Aqui, 
+cada cliente é atendido com dedicação, transparência e foco no crescimento do seu negócio."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/t6s0phr.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Bruno Sepulchro</strong>
+              <span>– Comercial e Vendas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+           "Na Perfil MS Digital, transformamos ideias em experiências digitais. 
+É gratificante desenvolver sites e páginas que ajudam nossos clientes a fortalecer sua presença online e alcançar novos mercados."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/IWM1x30.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Neemias Souza</strong>
+              <span>– Desenvolvedor Web</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "Trabalhar na Perfil MS Digital é construir relacionamentos de confiança todos os dias. 
+Nosso compromisso é acompanhar cada cliente de perto, garantindo um atendimento humanizado e eficiente."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/uZ0P8Mf.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Waleska Ribeiro</strong>
+              <span>– Atendimento e Relacionamento</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+           "Meu trabalho é transformar investimento em oportunidades. Na Perfil MS Digital, 
+utilizamos estratégias inteligentes para levar a mensagem certa ao público certo, gerando mais alcance e resultados."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/4oTlIUE.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Edwygues Alves</strong>
+              <span>– Gestor de Tráfego Pago</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "As palavras têm poder. Na Perfil MS Digital, desenvolvemos mensagens estratégicas que conectam marcas e pessoas, 
+despertando interesse, confiança e ação."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/Vll8kZ6.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Dr. Neivaldo Lourenço</strong>
+              <span>– Copywriter</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "É inspirador fazer parte de uma equipe que valoriza criatividade e planejamento. 
+Trabalhamos diariamente para fortalecer a presença digital dos nossos clientes e aproximá-los do seu público."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/F3P8sI9.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Neucileia Souza</strong>
+              <span>– Social Mídia</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "Acredito que um bom design comunica, emociona e gera valor. Na Perfil MS Digital, 
+criamos identidades visuais e materiais que destacam marcas e fortalecem sua imagem no mercado."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/bNaQD9x.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Neuzilane Souza</strong>
+              <span>– Designer Gráfico</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "Cada placa, outdoor ou fachada é uma oportunidade de tornar uma marca inesquecível. 
+Na Perfil MS Digital, trabalhamos para transformar visibilidade em reconhecimento e resultados."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/hjo1aPC.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Beto</strong>
+              <span>– Comunicação Visual</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "Organização, comprometimento e trabalho em equipe fazem parte da nossa rotina. 
+É muito gratificante coordenar projetos que ajudam nossos clientes a alcançar seus objetivos com excelência."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/C8uaY2O.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Melissa Souza</strong>
+              <span>– Gestora de Projetos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <span class="testimonial-quote">“</span>
+          <p class="testimonial-text">
+            "O vídeo tem o poder de contar histórias e criar conexões. Na Perfil MS Digital, 
+produzimos conteúdos que valorizam marcas e geram engajamento de forma criativa e estratégica."
+          </p>
+
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background-image:url('https://i.imgur.com/lU3k76O.jpeg');"></div>
+            <div class="testimonial-info">
+              <strong>Guilherme</strong>
+              <span> – Videomaker e Editor de Vídeo</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="testimonial-arrow next" id="nextTestimonial" aria-label="Próximo depoimento">›</button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+
+    <div class="footer-inner">
+
+      <div class="footer-col">
+        <h3 class="footer-brand">Michelle Sepulchro</h3>
+        <p class="footer-text">
+          Contatos e canais oficiais atualizados diretamente
+          pela área administrativa.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>NAVEGAÇÃO</h4>
+
+        <a href="#inicio" class="footer-link">Página Institucional</a>
+        <a href="#catalogo" class="footer-link">Meus Serviços</a>
+        <a href="#comentarios" class="footer-link">Depoimentos</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>CONTATO E REDES</h4>
+
+        <a href="https://wa.me/5527999371327" target="_blank" rel="noopener noreferrer" class="footer-contact">
+          <span class="footer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.52 3.48A11.82 11.82 0 0012.06 0C5.43 0 .06 5.37.06 12a11.9 11.9 0 001.6 5.94L0 24l6.26-1.64A11.9 11.9 0 0012.06 24C18.7 24 24.06 18.63 24.06 12a11.82 11.82 0 00-3.54-8.52zM12.06 21.82a9.76 9.76 0 01-4.98-1.37l-.36-.22-3.72.98.99-3.63-.23-.37a9.76 9.76 0 0114.98-12.16 9.7 9.7 0 01-6.68 16.77z"/>
+            </svg>
+          </span>
+          Fale no WhatsApp
+        </a>
+
+        <a href="https://www.instagram.com/michellesepulchroms/" target="_blank" rel="noopener noreferrer" class="footer-contact">
+          <span class="footer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+            </svg>
+          </span>
+          Michelle Sepulchro
+        </a>
+
+        <a href="https://www.instagram.com/perfilmsdigital/" target="_blank" rel="noopener noreferrer" class="footer-contact">
+          <span class="footer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+            </svg>
+          </span>
+          Perfil MS Digital
+        </a>
+
+        <a href="mailto:michellesepulcro@gmail.com" class="footer-contact">
+          <span class="footer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M2 6l10 7 10-7" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          michellesepulcro@gmail.com
+        </a>
+
+        <a href="mailto:perfilmsdigital@gmail.com" class="footer-contact">
+          <span class="footer-icon">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M2 6l10 7 10-7" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </span>
+          perfilmsdigital@gmail.com
+        </a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2024 Michelle Sepulchro. Todos os direitos reservados.</span>
+      <span class="footer-dev">Desenvolvido por Neemias Reis de Souza.</span>
+    </div>
+
+  </footer>
+
+  <!-- Floating WhatsApp CTA -->
+  <a href="https://api.whatsapp.com/send/?phone=5527999371327" class="floating-cta" target="_blank" rel="noopener noreferrer" aria-label="Fale pelo WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.52 3.48A11.82 11.82 0 0012.06 0C5.43 0 .06 5.37.06 12a11.9 11.9 0 001.6 5.94L0 24l6.26-1.64A11.9 11.9 0 0012.06 24C18.7 24 24.06 18.63 24.06 12a11.82 11.82 0 00-3.54-8.52zM12.06 21.82a9.76 9.76 0 01-4.98-1.37l-.36-.22-3.72.98.99-3.63-.23-.37a9.76 9.76 0 0114.98-12.16 9.7 9.7 0 01-6.68 16.77z"/>
+    </svg>
+    Fale Comigo
+  </a>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    (function() {
+      'use strict';
+
+      // === Scroll Progress ===
+      const scrollProgress = document.getElementById('scrollProgress');
+      function updateScrollProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = progress + '%';
+      }
+      window.addEventListener('scroll', updateScrollProgress, { passive: true });
+      updateScrollProgress();
+
+      // === Header behavior ===
+      const header = document.getElementById('header');
+      let lastScroll = 0;
+      let ticking = false;
+
+      function updateHeader() {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+
+        if (currentScroll > lastScroll && currentScroll > 200) {
+          header.classList.add('hidden');
+        } else {
+          header.classList.remove('hidden');
+        }
+
+        lastScroll = currentScroll;
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }, { passive: true });
+
+      // === Mobile menu ===
+      const menuToggle = document.getElementById('menuToggle');
+      const headerNav = document.getElementById('headerNav');
+      const navLinks = headerNav.querySelectorAll('a');
+
+      function toggleMenu() {
+        const isActive = headerNav.classList.toggle('active');
+        menuToggle.classList.toggle('active', isActive);
+        menuToggle.setAttribute('aria-expanded', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
+      }
+
+      menuToggle.addEventListener('click', toggleMenu);
+
+      navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (headerNav.classList.contains('active')) {
+            toggleMenu();
+          }
+        });
+      });
+
+      // === Scroll reveal ===
+      const revealElements = document.querySelectorAll('.reveal');
+      const revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      revealElements.forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      // === Video panel ===
+      const mainVideo = document.getElementById('mainVideo');
+      const videoItems = document.querySelectorAll('.video-item');
+
+      videoItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+          const newSrc = item.dataset.video;
+          if (mainVideo && newSrc) {
+            mainVideo.src = newSrc;
+          }
+          videoItems.forEach(function(i) { i.classList.remove('active'); });
+          item.classList.add('active');
+        });
+      });
+
+      // === Testimonials carousel ===
+      const testimonials = document.querySelectorAll('.testimonial-card');
+      const prevBtn = document.getElementById('prevTestimonial');
+      const nextBtn = document.getElementById('nextTestimonial');
+      let current = 0;
+      let autoPlayInterval;
+
+      function showTestimonial(index) {
+        testimonials.forEach(function(t) { t.classList.remove('active'); });
+        testimonials[index].classList.add('active');
+        current = index;
+      }
+
+      function nextTestimonial() {
+        const next = (current + 1) % testimonials.length;
+        showTestimonial(next);
+      }
+
+      function prevTestimonial() {
+        const prev = (current - 1 + testimonials.length) % testimonials.length;
+        showTestimonial(prev);
+      }
+
+      nextBtn.addEventListener('click', function() {
+        nextTestimonial();
+        resetAutoPlay();
+      });
+
+      prevBtn.addEventListener('click', function() {
+        prevTestimonial();
+        resetAutoPlay();
+      });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        const wrapper = document.querySelector('.testimonial-wrapper');
+        if (!wrapper) return;
+        const rect = wrapper.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        if (!isVisible) return;
+
+        if (e.key === 'ArrowRight') {
+          nextTestimonial();
+          resetAutoPlay();
+        } else if (e.key === 'ArrowLeft') {
+          prevTestimonial();
+          resetAutoPlay();
+        }
+      });
+
+      // Touch / swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+      const testimonialWrapper = document.querySelector('.testimonial-wrapper');
+
+      testimonialWrapper.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      testimonialWrapper.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, { passive: true });
+
+      function handleSwipe() {
+        const threshold = 50;
+        if (touchStartX - touchEndX > threshold) {
+          nextTestimonial();
+          resetAutoPlay();
+        } else if (touchEndX - touchStartX > threshold) {
+          prevTestimonial();
+          resetAutoPlay();
+        }
+      }
+
+      function startAutoPlay() {
+        autoPlayInterval = setInterval(nextTestimonial, 6000);
+      }
+
+      function resetAutoPlay() {
+        clearInterval(autoPlayInterval);
+        startAutoPlay();
+      }
+
+      if (testimonials.length > 1) {
+        startAutoPlay();
+      }
+
+      // Pause autoplay on hover
+      testimonialWrapper.addEventListener('mouseenter', function() {
+        clearInterval(autoPlayInterval);
+      });
+
+      testimonialWrapper.addEventListener('mouseleave', function() {
+        startAutoPlay();
+      });
+
+      // === Lazy loading fallback for older browsers ===
+      if ('loading' in HTMLImageElement.prototype) {
+        // natively supported
+      } else {
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+        const lazyObserver = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src || img.src;
+              lazyObserver.unobserve(img);
+            }
+          });
+        });
+        lazyImages.forEach(function(img) { lazyObserver.observe(img); });
+      }
+
+      // === Active section highlight on scroll ===
+      const sections = document.querySelectorAll('section[id]');
+      const navAnchors = document.querySelectorAll('.header-nav a[href^="#"]');
+
+      function setActiveNav() {
+        let currentSection = '';
+        sections.forEach(function(section) {
+          const sectionTop = section.offsetTop - 100;
+          if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navAnchors.forEach(function(anchor) {
+          anchor.classList.remove('active');
+          if (anchor.getAttribute('href') === '#' + currentSection) {
+            anchor.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', setActiveNav, { passive: true });
+      setActiveNav();
+
+      // === Smooth scroll polyfill for Safari / older browsers ===
+      document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const target = document.querySelector(targetId);
+          if (target) {
+            e.preventDefault();
+            const headerHeight = header.offsetHeight;
+            const targetPosition = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+            window.scrollTo({
+              top: targetPosition,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+    })();
+  </script>
+
+</body>
+</html>
